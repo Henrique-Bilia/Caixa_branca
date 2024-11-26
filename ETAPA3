@@ -10,7 +10,7 @@ import java.sql.Statement;
 public class User {                                                             1. Início da classe User
 
     
-    public Connection conectarBD() {                                           2. Início do método conectarBD
+    public Connection conectarBD() {                                            2. Início do método conectarBD
       
         Connection conn = null;
         try {                                                                  3. Tentativa de carregar o driver e conectar ao banco
