@@ -1,1 +1,59 @@
+package login;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+##Numeração dos Pontos
+
+public class User {                                                             1. Início da classe User
+
+    
+    public Connection conectarBD() {                                           2. Início do método conectarBD
+      
+        Connection conn = null;
+        try {                                                                  3. Tentativa de carregar o driver e conectar ao banco
+           
+            Class.forName("com.mysql.Driver.Manager").newInstance();
+            String url = "jdbc:mysql://127.0.0.1/test?user=lopes&password=123";
+            conn = DriverManager.getConnection(url);
+        } catch (Exception e) {
+            // Tratamento de exceção vazio (não recomendado)
+        }
+    
+        return conn;                                                            4. Retorno do objeto Connection
+    }
+
+    public String nome = "";                                                    5. Declaração da variável pública nome
+    public boolean result = false;                                              6. Declaração da variável pública result
+
+    public boolean verificarUsuario(String login, String senha) {               7. Início do método verificarUsuario
+        
+        String sql = "";
+        Connection conn = conectarBD();                                         8. Chamada ao método conectarBD
+        
+                                                                                9. Construção da consulta SQL
+        sql += "select nome from usuarios ";
+        sql += "where login = '" + login + "'";
+        sql += " and senha = '" + senha + "';";
+        
+        try {                                                                    10. Execução da consulta SQL
+           
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+           
+            if (rs.next()) {                                                      11. Verificação do ResultSet
+                result = true; // Usuário encontrado
+                nome = rs.getString("nome");
+            }
+        } catch (Exception e) {
+            // Tratamento de exceção vazio (não recomendado)
+        }
+        
+        
+        return result;                                                           12. Retorno do valor de result
+    }
+}                                                                                13. Fim da classe User
 
