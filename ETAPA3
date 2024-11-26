@@ -2,58 +2,58 @@ package login;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
+import java.sql.ResultSet;                                                         ##NODOS                                ##ARESTAS  
 import java.sql.Statement;
-
-##Numeração dos Pontos
-
-public class User {                                                             1. Início da classe User
+                                                                                5. Declaração da variável pública nome
+##Numeração dos Pontos                                                          |            
+                                                                                |
+public class User {                                                           N 1. Início da classe User  -->  2. Início do método conectarBD
 
     
-    public Connection conectarBD() {                                            2. Início do método conectarBD
+    public Connection conectarBD() {                                          N 2. Início do método conectarBD  -->  3. Tentativa de carregar o driver e conectar ao banco
       
         Connection conn = null;
-        try {                                                                  3. Tentativa de carregar o driver e conectar ao banco
+        try {                                                                 N 3. Tentativa de carregar o driver e conectar ao banco  -->  4. Retorno do objeto Connection
            
             Class.forName("com.mysql.Driver.Manager").newInstance();
             String url = "jdbc:mysql://127.0.0.1/test?user=lopes&password=123";
             conn = DriverManager.getConnection(url);
         } catch (Exception e) {
-            // Tratamento de exceção vazio (não recomendado)
+           
         }
     
-        return conn;                                                            4. Retorno do objeto Connection
+        return conn;                                                          N 4. Retorno do objeto Connection
     }
 
-    public String nome = "";                                                    5. Declaração da variável pública nome
-    public boolean result = false;                                              6. Declaração da variável pública result
+    public String nome = "";                                                  N 5. Declaração da variável pública nome  -->  6. Declaração da variável pública result
+    public boolean result = false;                                            N 6. Declaração da variável pública result  -->  7. Início do método verificarUsuario
 
-    public boolean verificarUsuario(String login, String senha) {               7. Início do método verificarUsuario
+    public boolean verificarUsuario(String login, String senha) {             N 7. Início do método verificarUsuario  -->  8. Chamada ao método conectarBD
         
         String sql = "";
-        Connection conn = conectarBD();                                         8. Chamada ao método conectarBD
+        Connection conn = conectarBD();                                       N 8. Chamada ao método conectarBD  -->  9. Construção da consulta SQL
         
-                                                                                9. Construção da consulta SQL
+                                                                              N 9. Construção da consulta SQL  -->  10. Execução da consulta SQL
         sql += "select nome from usuarios ";
         sql += "where login = '" + login + "'";
         sql += " and senha = '" + senha + "';";
         
-        try {                                                                    10. Execução da consulta SQL
+        try {                                                                 N 10. Execução da consulta SQL  -->  11. Verificação do ResultSet
            
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
-
+                                                                                                            
            
-            if (rs.next()) {                                                      11. Verificação do ResultSet
-                result = true; // Usuário encontrado
+            if (rs.next()) {                                                  N 11. Verificação do ResultSet   -->  N12 se if=True a variável nome recebe o valor correspondente do banco   -->  14. Retorno do valor de result
+                result = true; // Usuário encontrado                                                           -->  N13 se if=False o bloco if é ignorado e a variável nome não é alterada  -->  14. Retorno do valor de result
                 nome = rs.getString("nome");
             }
         } catch (Exception e) {
-            // Tratamento de exceção vazio (não recomendado)
+            
         }
         
         
-        return result;                                                           12. Retorno do valor de result
+        return result;                                                          N 14. Retorno do valor de result  -->  15. Fim da classe User
     }
-}                                                                                13. Fim da classe User
+}                                                                               N 15. Fim da classe User
 
