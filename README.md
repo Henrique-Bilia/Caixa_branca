@@ -41,3 +41,14 @@ public class User {
 // fim da class
 
 
+
+
+
+
+
+
+
+
+CÁLCULO DA COMPLEXIDADE CICLOMÁTICA:
+M=15-13+2=4
+
