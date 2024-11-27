@@ -56,4 +56,3 @@ public class User {                                                           N 
         return result;                                                          N 14. Retorno do valor de result  -->  15. Fim da classe User
     }
 }                                                                               N 15. Fim da classe User
-
