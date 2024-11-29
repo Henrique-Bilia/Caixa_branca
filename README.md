@@ -50,7 +50,7 @@ O código se torna menos legível, mais difícil de manter e testar.
 
 
 CÁLCULO DA COMPLEXIDADE CICLOMÁTICA:
-M=15-13+2=4
+M=13-12+2=3
 
 
 GRAFO DE FLUXO:
